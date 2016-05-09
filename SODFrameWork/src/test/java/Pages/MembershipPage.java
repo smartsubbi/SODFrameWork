@@ -17,11 +17,15 @@ public class MembershipPage
 	
     WebDriver driver;
     String oneMonthExpectedPrice = "$9.99";    
+    String oneMonthExpectedOldPrice = "$9.99";
     String threeMonthsExpectedPrice = "$24.99";
+    String threeMonthsExpectedOldPrice = "$24.99";
     String threeMonthsExpectedSavings = "Save $4.98!"; 
     String sixMonthsExpectedPrice = "$47.99";
+    String sixMonthsExpectedOldPrice = "$47.99";
     String sixMonthsExpectedSavings = "Save $11.94!"; 
     String twelveMonthsExpectedPrice = "$84.99";
+    String twelveMonthsExpectedOldPrice = "$84.99";
     String twelveMonthsExpectedSavings = "Save $34.92!"; 
     ExtentTest logger;   
     
@@ -41,8 +45,11 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-option'][.='Monthly']")
 	WebElement monthlyText;
 	
-	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-price']/span/span[.='$7.99']")
+	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-price']")
 	WebElement monthlyPrice;
+	
+	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[1]/div[2]/span/span[2]/span")
+	WebElement monthlyOldPrice;
 	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-gemsmo monthlygems'][.='500 Gems/Mo.']")
 	WebElement monthlyGems;
@@ -58,11 +65,17 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']")	                 
 	WebElement threeMonthMembershipOption;
 	
+	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[2]/div[1][@class='most-popular-mem-burst']")
+	WebElement threeMonthsMostPopularIcon;
+	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']/div[@class='membership-option'][.='3 Months']")
 	WebElement threeMonthsText;
 	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']/div[@class='membership-price']")
 	WebElement threeMonthsPrice;
+	
+	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[2]/div[3]/span/span[2]/span")
+	WebElement threeeMonthsOldPrice;
 	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']/div[@class='membership-savings']")
 	WebElement threeMonthsSavings;
@@ -87,6 +100,9 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-six-months '][@onclick='membership.selectOpt(3);']/div[@class='membership-price']")
 	WebElement sixMonthsPrice;
 	
+	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[3]/div[2]/span/span[2]/span")
+	WebElement sixMonthsOldPrice;
+	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-six-months '][@onclick='membership.selectOpt(3);']/div[@class='membership-savings']")
 	WebElement sixMonthsSavings;
 	
@@ -104,11 +120,17 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']")	                 
 	WebElement twelveMonthsMembershipOption;
 	
+	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[4]/div[1][@class='best-value-burst']")
+	WebElement twelveMonthsBestValueIcon;
+	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']/div[@class='membership-option'][.='12 Months']")
 	WebElement twelveMonthsText;
 	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']/div[@class='membership-price']")
 	WebElement twelveMonthsPrice;
+	
+	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[4]/div[3]/span/span[2]/span")
+	WebElement twelveMonthsOldPrice;
 	
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']/div[@class='membership-savings']")
 	WebElement twelveMonthsSavings;
@@ -123,6 +145,10 @@ public class MembershipPage
 	WebElement twelveMonthsBuyNowButton;	
 	
 	/* Membership Features */	
+	
+	@FindBy(xpath="//table[@id='tblMembershipFeatures']")
+	WebElement membershipFeatures;
+	
 	  
 	String[] elements = { 
 			"//table[@id='tblMembershipFeatures']/tbody/tr[3]/td[1][.='Access to Icestorm Island Expansion Pack ']",
@@ -203,6 +229,9 @@ public class MembershipPage
 	
 	@FindBy(xpath="//div[@id='dvPayPlus'][@class='payWallInGameOuter']/div[@id='dvPayPlusInner'][@class='payWallInGameInner']/div/h3[.='Select a payment method:']")
 	WebElement selectAPaymentMethodText;
+	
+	@FindBy(xpath="//div[@id='dvPayPlus'][@class='payWallInGameOuter']/div[@id='dvPayPlusInner'][@class='payWallInGameInner']/a[@id='PAYPAL'][@class='paymentMethodItem']/div/img[@src='https://livegamer-cashin.s3.amazonaws.com/1/payments/sm-paypal.png']")
+	WebElement selectPaymentMethodPayPal;
 	
 	@FindBy(xpath="//div[@id='dvPayPlus'][@class='payWallInGameOuter']/div[@id='dvPayPlusInner'][@class='payWallInGameInner']/a[@id='VISA'][@class='paymentMethodItem']/div/img[@src='https://livegamer-cashin.s3.amazonaws.com/1/payments/sm-visa.png']")
 	public WebElement selectPaymentMethodVisa;
@@ -290,42 +319,62 @@ public class MembershipPage
 	@FindBy(xpath=".//*[@id='buy-button'][@type='submit'][.='Buy']")
 	public WebElement buyButtonPaymentMethodDB;	
 	
-	public void verifyMonthly(ExtentTest logger) throws Throwable
+	/* PayPal Page Fields */
+	
+	@FindBy(xpath="//div[@id='header']/h1[.='Knowledge Holdings, Inc']")
+	WebElement payPalPageCompanyText;
+	
+	@FindBy(xpath="//div[@id='header']/div/span[contains(text(),'Knowledge Holdings, Inc')]")
+	WebElement payPalPage2CompanyText;
+	
+	@FindBy(xpath="//li[@id='multiitem1']/ul[1]/li[1]/span[2]")
+	WebElement payPalPageSelectedPrice;	
+	
+	@FindBy(xpath="//span[@id='transactionCart']/span[2]/format-currency/span")
+	WebElement payPalPage2SelectedPrice;	
+	
+	public void verifyMonthly(ExtentTest logger)
 	{
 		Assert.assertTrue(oneMonthMembershipOption!=null);
-		Assert.assertTrue(oneMonthMembershipOption.isDisplayed());		
+		Assert.assertTrue(oneMonthMembershipOption.isDisplayed());
 		Assert.assertTrue(monthlyText!=null);
 		Assert.assertTrue(monthlyText.isDisplayed());		
 		Assert.assertTrue(monthlyPrice!=null);
 		Assert.assertTrue(monthlyPrice.isDisplayed());
 		String oneMonthActualPrice = monthlyPrice.getText();
 		System.out.println(oneMonthActualPrice);	
-		Assert.assertEquals(oneMonthActualPrice,oneMonthExpectedPrice);		
+		Assert.assertEquals(oneMonthActualPrice,oneMonthExpectedPrice);
+//		Assert.assertTrue(monthlyOldPrice!=null);
+//		Assert.assertTrue(monthlyOldPrice.isDisplayed());
+//		String oneMonthActualOldPrice = monthlyOldPrice.getText();
+//		System.out.println(oneMonthActualOldPrice);			
+//		Assert.assertEquals(oneMonthActualOldPrice,oneMonthExpectedOldPrice);
 		Assert.assertTrue(monthlyGems!=null);
 		Assert.assertTrue(monthlyGems.isDisplayed());
 		Assert.assertTrue(monthlyValue!=null);
 		Assert.assertTrue(monthlyValue.isDisplayed());
 		Assert.assertTrue(monthlyBuyNowButton!=null);
 		Assert.assertTrue(monthlyBuyNowButton.isDisplayed());
-		HighLighter.elementHighLight(driver, oneMonthMembershipOption);
-		logger.log(LogStatus.INFO, "Verified one month membership option and its contents");
-		Thread.sleep(5000);					
-		String oneMonthMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, oneMonthMembershipOptionScreenshot);		
 	}
 	
-	public void verifyThreeMonthly(ExtentTest logger) throws Throwable
+	public void verifyThreeMonthly(ExtentTest logger)
 	{
 		Assert.assertTrue(threeMonthMembershipOption!=null);
 		Assert.assertTrue(threeMonthMembershipOption.isDisplayed());
-		
+		Assert.assertTrue(threeMonthsMostPopularIcon!=null);
+		Assert.assertTrue(threeMonthsMostPopularIcon.isDisplayed());
 		Assert.assertTrue(threeMonthsText!=null);
 		Assert.assertTrue(threeMonthsText.isDisplayed());			
 		Assert.assertTrue(threeMonthsPrice!=null);
 		Assert.assertTrue(threeMonthsPrice.isDisplayed());
 		String threeMonthsActualPrice = threeMonthsPrice.getText();
 		System.out.println(threeMonthsActualPrice);		
-		Assert.assertEquals(threeMonthsActualPrice, threeMonthsExpectedPrice);		
+		Assert.assertEquals(threeMonthsActualPrice, threeMonthsExpectedPrice);	
+//		Assert.assertTrue(threeeMonthsOldPrice!=null);
+//		Assert.assertTrue(threeeMonthsOldPrice.isDisplayed());
+//		String threeMonthsActualOldPrice = threeeMonthsOldPrice.getText();
+//		System.out.println(threeMonthsActualOldPrice);		
+//		Assert.assertEquals(threeMonthsActualOldPrice, threeMonthsExpectedOldPrice);		
 		Assert.assertTrue(threeMonthsSavings!=null);
 		Assert.assertTrue(threeMonthsSavings.isDisplayed());
 		String threeMonthsActualSavings = threeMonthsSavings.getText();
@@ -337,24 +386,24 @@ public class MembershipPage
 		Assert.assertTrue(threeMonthsValue.isDisplayed());
 		Assert.assertTrue(threeMonthsBuyNowButton!=null);
 		Assert.assertTrue(threeMonthsBuyNowButton.isDisplayed());
-		HighLighter.elementHighLight(driver, threeMonthMembershipOption);
-		logger.log(LogStatus.INFO, "Verified three months membership option and its contents");
-		Thread.sleep(5000);					
-		String threeMonthMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, threeMonthMembershipOptionScreenshot);		
 	}
 	
-	public void verifySixMonthly(ExtentTest logger) throws Throwable
+	public void verifySixMonthly(ExtentTest logger)
 	{
 		Assert.assertTrue(sixMonthsMembershipOption!=null);
-		Assert.assertTrue(sixMonthsMembershipOption.isDisplayed());		
+		Assert.assertTrue(sixMonthsMembershipOption.isDisplayed());
 		Assert.assertTrue(sixMonthsText!=null);
 		Assert.assertTrue(sixMonthsText.isDisplayed());			
 		Assert.assertTrue(sixMonthsPrice!=null);
 		Assert.assertTrue(sixMonthsPrice.isDisplayed());
 		String sixMonthsActualPrice = sixMonthsPrice.getText();
 		System.out.println(sixMonthsActualPrice);		
-		Assert.assertEquals(sixMonthsActualPrice, sixMonthsExpectedPrice);			
+		Assert.assertEquals(sixMonthsActualPrice, sixMonthsExpectedPrice);
+//		Assert.assertTrue(sixMonthsOldPrice!=null);
+//		Assert.assertTrue(sixMonthsOldPrice.isDisplayed());
+//		String sixMonthsActualOldPrice = sixMonthsOldPrice.getText();
+//		System.out.println(sixMonthsActualOldPrice);		
+//		Assert.assertEquals(sixMonthsActualOldPrice, sixMonthsExpectedOldPrice);
 		Assert.assertTrue(sixMonthsSavings!=null);
 		Assert.assertTrue(sixMonthsSavings.isDisplayed());
 		String sixMonthActualSavings = sixMonthsSavings.getText();
@@ -366,24 +415,26 @@ public class MembershipPage
 		Assert.assertTrue(sixMonthsValue.isDisplayed());
 		Assert.assertTrue(sixMonthsBuyNowButton!=null);
 		Assert.assertTrue(sixMonthsBuyNowButton.isDisplayed());
-		HighLighter.elementHighLight(driver, sixMonthsMembershipOption);
-		logger.log(LogStatus.INFO, "Verified six months membership option and its contents");
-		Thread.sleep(5000);					
-		String sixMonthMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, sixMonthMembershipOptionScreenshot);
 	}
 	
-	public void verifyTwelveMonths(ExtentTest logger) throws Throwable
+	public void verifyTwelveMonths(ExtentTest logger)
 	{
 		Assert.assertTrue(twelveMonthsMembershipOption!=null);
-		Assert.assertTrue(twelveMonthsMembershipOption.isDisplayed());		
+		Assert.assertTrue(twelveMonthsMembershipOption.isDisplayed());
+		Assert.assertTrue(twelveMonthsBestValueIcon!=null);
+		Assert.assertTrue(twelveMonthsBestValueIcon.isDisplayed());
 		Assert.assertTrue(twelveMonthsText!=null);
 		Assert.assertTrue(twelveMonthsText.isDisplayed());			
 		Assert.assertTrue(twelveMonthsPrice!=null);
 		Assert.assertTrue(twelveMonthsPrice.isDisplayed());
 		String twelveMonthsActualPrice = twelveMonthsPrice.getText();
 		System.out.println(twelveMonthsActualPrice);		
-		Assert.assertEquals(twelveMonthsActualPrice, twelveMonthsExpectedPrice);			
+		Assert.assertEquals(twelveMonthsActualPrice, twelveMonthsExpectedPrice);
+//		Assert.assertTrue(twelveMonthsOldPrice!=null);
+//		Assert.assertTrue(twelveMonthsOldPrice.isDisplayed());
+//		String twelveMonthsActualOldPrice = twelveMonthsOldPrice.getText();
+//		System.out.println(twelveMonthsActualOldPrice);		
+//		Assert.assertEquals(twelveMonthsActualOldPrice, twelveMonthsExpectedOldPrice);		
 		Assert.assertTrue(twelveMonthsSavings!=null);
 		Assert.assertTrue(twelveMonthsSavings.isDisplayed());
 		String TwelveMonthsActualSavings = twelveMonthsSavings.getText();
@@ -395,14 +446,9 @@ public class MembershipPage
 		Assert.assertTrue(twelveMonthsValue.isDisplayed());
 		Assert.assertTrue(twelveMonthsBuyNowButton!=null);
 		Assert.assertTrue(twelveMonthsBuyNowButton.isDisplayed());
-		HighLighter.elementHighLight(driver, twelveMonthsMembershipOption);
-		logger.log(LogStatus.INFO, "Verified twelve months membership option and its contents");
-		Thread.sleep(5000);					
-		String twelveMonthMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, twelveMonthMembershipOptionScreenshot);
 	}
 	
-	public void verifyMembershipFeatures()
+	public void verifyMembershipFeatures(ExtentTest logger)
 	{
 		for(int i=0;i<elements.length;i++)
 		{
@@ -412,183 +458,291 @@ public class MembershipPage
 		}
 	}
 	
-	public void verifySelectAPaymentMethodDB(ExtentTest logger) throws Throwable
+	public void verifySelectAPaymentMethodDB()
 	{
 		Assert.assertTrue(selectAPaymentMethodDB!=null);
-		Assert.assertTrue(selectAPaymentMethodDB.isDisplayed());		
-		Assert.assertTrue(selectAPaymentMethodDBCloseButton!=null);	
-		Assert.assertTrue(selectAPaymentMethodDBCloseButton.isDisplayed());		
+		Assert.assertTrue(selectAPaymentMethodDB.isDisplayed());
+		Assert.assertTrue(selectAPaymentMethodDBCloseButton!=null);		
+		Assert.assertTrue(selectAPaymentMethodDBCloseButton.isDisplayed());
 		Assert.assertTrue(selectAPaymentMethodText!=null);
 		Assert.assertTrue(selectAPaymentMethodText.isDisplayed());		
+		Assert.assertTrue(selectPaymentMethodPayPal!=null);
+		Assert.assertTrue(selectPaymentMethodPayPal.isDisplayed());
 		Assert.assertTrue(selectPaymentMethodVisa!=null);
-		Assert.assertTrue(selectPaymentMethodVisa.isDisplayed());			
+		Assert.assertTrue(selectPaymentMethodVisa.isDisplayed());	
 		Assert.assertTrue(selectPaymentMethodMasterCard!=null);
-		Assert.assertTrue(selectPaymentMethodMasterCard.isDisplayed());		
-		logger.log(LogStatus.INFO, "Verified if select a payment method DB is displayed and also verified the contents of it : Select a Payment Method Text, Close Button, Visa and MasterCard Options");
-		Thread.sleep(5000);					
-		String selectAPaymentMethodDBScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, selectAPaymentMethodDBScreenshot);		
+		Assert.assertTrue(selectPaymentMethodMasterCard.isDisplayed());
 	}
 	
-	public void verifyVisaForm(ExtentTest logger) throws Throwable
+	public void verifyPayPalPage(String expectedPrice)
+	{			
+		if(payPalPageCompanyText==null)
+		{
+			System.out.println("Element null");
+			Assert.assertTrue(payPalPage2CompanyText!=null);
+		}				
+		
+		try
+		{
+			Assert.assertTrue(payPalPageCompanyText.isDisplayed());
+		}
+		catch(Exception e)
+		{
+			System.out.println("First element not found");	
+			try
+			{
+				Assert.assertTrue(payPalPage2CompanyText.isDisplayed());	
+			}								
+			catch(Exception ee)
+			{
+				System.out.println("Second element not found");	
+			}
+		}		
+		
+		if(payPalPageSelectedPrice==null)
+		{
+			System.out.println("Element null");
+			Assert.assertTrue(payPalPage2SelectedPrice!=null);
+		}			
+		
+		try
+		{
+			Assert.assertTrue(payPalPageSelectedPrice.isDisplayed());
+		}
+		catch(Exception e)
+		{
+			System.out.println("First element not found");
+			try
+			{
+				Assert.assertTrue(payPalPage2SelectedPrice.isDisplayed());	
+			}
+			catch(Exception ee)
+			{
+				System.out.println("Second element not found");
+			}						
+		}		
+	}
+	
+	public void verifyVisaForm()
 	{
 		Assert.assertTrue(indiaFlag!=null);
-		Assert.assertTrue(indiaFlag.isDisplayed());		
+		Assert.assertTrue(indiaFlag.isDisplayed());
 		Assert.assertTrue(firstNameTextPaymentMethodDB!=null);
-		Assert.assertTrue(firstNameTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(firstNameTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(firstNameTextInputFieldPaymentMethodDB!=null);
-		Assert.assertTrue(firstNameTextInputFieldPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(firstNameTextInputFieldPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(lastNameTextPaymentMethodDB!=null);
-		Assert.assertTrue(lastNameTextPaymentMethodDB.isDisplayed());			
+		Assert.assertTrue(lastNameTextPaymentMethodDB.isDisplayed());	
 		Assert.assertTrue(lastNameTextInputFieldPaymentMethodDB!=null);
-		Assert.assertTrue(lastNameTextInputFieldPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(lastNameTextInputFieldPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(creditCardNumberTextPaymentMethodDB!=null);
-		Assert.assertTrue(creditCardNumberTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(creditCardNumberTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(creditCardNumberInputPaymentMethodDB!=null);
-		Assert.assertTrue(creditCardNumberInputPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(creditCardNumberInputPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(monthTextPaymentMethodDB!=null);
-		Assert.assertTrue(monthTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(monthTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(monthSelectPaymentMethodDB!=null);
-		Assert.assertTrue(monthSelectPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(monthSelectPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(yearTextPaymentMethodDB!=null);
-		Assert.assertTrue(yearTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(yearTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(yearSelectPaymentMethodDB!=null);
-		Assert.assertTrue(yearSelectPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(yearSelectPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(securityCodeTextPaymentMethodDB!=null);
-		Assert.assertTrue(securityCodeTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(securityCodeTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(securityCodeInputPaymentMethodDB!=null);
-		Assert.assertTrue(securityCodeInputPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(securityCodeInputPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(checkBoxPaymentMethodDB!=null);
-		Assert.assertTrue(checkBoxPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(checkBoxPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(checkBoxTextPaymentMethodDB!=null);
-		Assert.assertTrue(checkBoxTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(checkBoxTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(provinceTextPaymentMethodDB!=null);
-		Assert.assertTrue(provinceTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(provinceTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(provinceInputPaymentMethodDB!=null);
-		Assert.assertTrue(provinceInputPaymentMethodDB.isDisplayed());	
+		Assert.assertTrue(provinceInputPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(cityTextPaymentMethodDB!=null);
-		Assert.assertTrue(cityTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(cityTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(cityInputPaymentMethodDB!=null);
-		Assert.assertTrue(cityInputPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(cityInputPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(addressTextPaymentMethodDB!=null);
-		Assert.assertTrue(addressTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(addressTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(addressInputPaymentMethodDB!=null);
-		Assert.assertTrue(addressInputPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(addressInputPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(postalCodeTextPaymentMethodDB!=null);
-		Assert.assertTrue(postalCodeTextPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(postalCodeTextPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(postalCodeInputPaymentMethodDB!=null);
-		Assert.assertTrue(postalCodeInputPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(postalCodeInputPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(backButtonPaymentMethodDB!=null);
-		Assert.assertTrue(backButtonPaymentMethodDB.isDisplayed());		
+		Assert.assertTrue(backButtonPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(buyButtonPaymentMethodDB!=null);
-		Assert.assertTrue(buyButtonPaymentMethodDB.isDisplayed());			
-		logger.log(LogStatus.INFO, "Verified the form and its contents");
-		Thread.sleep(5000);					
-		String buyButtonPaymentMethodDBScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, buyButtonPaymentMethodDBScreenshot);			
+		Assert.assertTrue(buyButtonPaymentMethodDB.isDisplayed());		
 	}
 	
 	public void verifyAllMembersipOptionsAndFeatures(ExtentTest logger) throws Throwable
 	{
 		verifyMonthly(logger);
+		logger.log(LogStatus.INFO, "Verified the monthly Membership option contents");	
+		HighLighter.elementHighLight(driver, oneMonthMembershipOption);
+		String oneMonthMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "oneMonthMembershipOptionScreenshot"));
+		logger.log(LogStatus.INFO, oneMonthMembershipOptionScreenshot);
+		
 		verifyThreeMonthly(logger);
+		logger.log(LogStatus.INFO, "Verified the 3 Months Membership option contents");	
+		HighLighter.elementHighLight(driver, threeMonthMembershipOption);
+		String threeMonthMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "threeMonthMembershipOptionScreenshot"));
+		logger.log(LogStatus.INFO, threeMonthMembershipOptionScreenshot);
+		
 		verifySixMonthly(logger);
-		verifyTwelveMonths(logger);		
-		verifyMembershipFeatures();
+		logger.log(LogStatus.INFO, "Verified the 6 Months Membership option contents");	
+		HighLighter.elementHighLight(driver, sixMonthsMembershipOption);
+		String sixMonthsMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "sixMonthsMembershipOptionScreenshot"));
+		logger.log(LogStatus.INFO, sixMonthsMembershipOptionScreenshot);
+		
+		verifyTwelveMonths(logger);
+		logger.log(LogStatus.INFO, "Verified the 12 Months Membership option contents");	
+		HighLighter.elementHighLight(driver, twelveMonthsMembershipOption);
+		String twelveMonthsMembershipOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "twelveMonthsMembershipOptionScreenshot"));
+		logger.log(LogStatus.INFO, twelveMonthsMembershipOptionScreenshot);
+				
+		verifyMembershipFeatures(logger);
+		logger.log(LogStatus.INFO, "Verified the Membership features contents");
+		HighLighter.elementHighLight(driver, membershipFeatures);
+		String MembershipFeaturesScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "MembershipFeaturesScreenshot"));
+		logger.log(LogStatus.INFO, MembershipFeaturesScreenshot);
 	}
 	
-	public void verifySelectPaymentMethodDBandPaymentFormGeneral(ExtentTest logger) throws Throwable
+	public void verifySelectPaymentMethodDBandPaymentFormGeneral(WebElement element,String price, String membershipType,ExtentTest logger) throws Throwable
 	{
-		Thread.sleep(5000);			
-	    verifySelectAPaymentMethodDB(logger);
+		Thread.sleep(5000);	
+		element.click();
+		logger.log(LogStatus.INFO, "Clicked the Buy now button for : "+membershipType+"to verify the PayPal Page");
+		Thread.sleep(10000);			
+	    verifySelectAPaymentMethodDB();
+	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
+	  
+		String selectAPaymentMethodDBPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBPayPalScreenshot"));
+		logger.log(LogStatus.INFO, selectAPaymentMethodDBPayPalScreenshot);
 	    Thread.sleep(5000);
-		selectPaymentMethodVisa.click();			
+		selectPaymentMethodPayPal.click();
+		logger.log(LogStatus.INFO, "Selecting Payment method as PayPal for : "+membershipType);
+		
+		String selectPaymentMethodPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodPayPalScreenshot"));
+		logger.log(LogStatus.INFO, selectPaymentMethodPayPalScreenshot);
+		Thread.sleep(5000);	
+		String currentURL = driver.getCurrentUrl();		
+		Assert.assertTrue(currentURL.contains("https://www.paypal.com"));	
+		logger.log(LogStatus.INFO, "Verifying PayPal page URL for : "+membershipType);
+		logger.log(LogStatus.INFO, "checking PayPal page started for : "+membershipType);
+		verifyPayPalPage(price);		
+		logger.log(LogStatus.INFO, "checking PayPal page done for : "+membershipType);
+		
+		String payPalPageScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "payPalPageScreenshot"));
+		logger.log(LogStatus.INFO, payPalPageScreenshot);
+		driver.get("https://www.schoolofdragons.com/Membership/Membership.aspx");
+		logger.log(LogStatus.INFO, "Going back to Membership page after PayPal page verification is done for : "+membershipType);		
+		Thread.sleep(5000);	
+		element.click();
+		logger.log(LogStatus.INFO, "Clicked the Buy now button for : "+membershipType+"to verify the Visa form");
+		Thread.sleep(5000);			
+	    verifySelectAPaymentMethodDB();
+	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
+	   
+		String selectAPaymentMethodDBVisaScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBVisaScreenshot"));
+		logger.log(LogStatus.INFO, selectAPaymentMethodDBVisaScreenshot);
+	    Thread.sleep(5000);
+		selectPaymentMethodVisa.click();	
+		logger.log(LogStatus.INFO, "Selecting Payment method as Visa for : "+membershipType);
+		
+		String selectPaymentMethodVisaScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodVisaScreenshot"));
+		logger.log(LogStatus.INFO, selectPaymentMethodVisaScreenshot);
 		Thread.sleep(5000);			
 		driver.switchTo().frame(driver.findElements(By.tagName("iframe")).get(0));
+		logger.log(LogStatus.INFO,"Switching to Visa form frame for : "+membershipType);
 		Thread.sleep(10000);			
-		System.out.println("checking Visa form");
-		verifyVisaForm(logger);
-		System.out.println("checking Visa form done");
+		logger.log(LogStatus.INFO,"checking Visa form for : "+membershipType);
+		verifyVisaForm();
+		logger.log(LogStatus.INFO,"checking Visa form done for : "+membershipType);		
+		String visaFormScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "visaFormScreenshot"));
+		logger.log(LogStatus.INFO, visaFormScreenshot);
 		driver.switchTo().defaultContent();
-		selectAPaymentMethodDBCloseButton.click();
-		monthlyBuyNowButton.click();
+		logger.log(LogStatus.INFO,"Switching back to default content after verifying visa form for : "+membershipType);
+		selectAPaymentMethodDBCloseButton.click();	
+		logger.log(LogStatus.INFO,"Closing the form after verifying Visa form for : "+membershipType);		
+		Thread.sleep(5000);	
+		element.click();
+		logger.log(LogStatus.INFO, "Clicked the Buy now button for : "+membershipType+"to verify the MasterCard form");
 		Thread.sleep(5000);			
-		verifySelectAPaymentMethodDB(logger);
+		verifySelectAPaymentMethodDB();
+		logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
+	   
+		String selectAPaymentMethodDBMasterCardScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBMasterCardScreenshot"));
+		logger.log(LogStatus.INFO, selectAPaymentMethodDBMasterCardScreenshot);
 		Thread.sleep(5000);			
-		selectPaymentMethodMasterCard.click();			
+		selectPaymentMethodMasterCard.click();
+		logger.log(LogStatus.INFO, "Selecting Payment method as Visa for : "+membershipType);
+		
+		String selectPaymentMethodMasterCardScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodMasterCardScreenshot"));
+		logger.log(LogStatus.INFO, selectPaymentMethodMasterCardScreenshot);
 		Thread.sleep(5000);
 		driver.switchTo().frame(driver.findElements(By.tagName("iframe")).get(0));
+		logger.log(LogStatus.INFO,"Switching to Master Card form frame for : "+membershipType);
 		Thread.sleep(10000);			
-		System.out.println("checking MasterCard form");
-		verifyVisaForm(logger);
-		System.out.println("checking MasterCard form done");	
+		logger.log(LogStatus.INFO,"checking Master Card form for : "+membershipType);
+		verifyVisaForm();
+		logger.log(LogStatus.INFO,"checking Master Card form done for : "+membershipType);	
+		String masterCardFormScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "masterCardFormScreenshot"));
+		logger.log(LogStatus.INFO, masterCardFormScreenshot);
 		driver.switchTo().defaultContent();
+		logger.log(LogStatus.INFO,"Switching back to default content after verifying MasterCard form for : "+membershipType);
 		selectAPaymentMethodDBCloseButton.click();
+		logger.log(LogStatus.INFO,"Closing the form after verifying MasterCard form for : "+membershipType);
 	}
 	
 	public void verifyMonthlySelectPaymentMethodDBandPaymentForm(ExtentTest logger) throws Throwable
 	{
-		logger.log(LogStatus.INFO,"<b><font size='6'>Verify monthly PaymentMethodDBandPaymentForm</font></b>");
-		Thread.sleep(5000);
+		logger.log(LogStatus.INFO,"<b><font size='5'>Verify monthly PaymentMethodDBandPaymentForm</font></b>");		
 		monthlyBuyNowButton.isDisplayed();
-		HighLighter.elementHighLight(driver, monthlyBuyNowButton);
-		Thread.sleep(5000);					
-		String monthlyBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, monthlyBuyNowButtonScreenshot);	
-		logger.log(LogStatus.INFO, "Selected the buy now button for One month membership option");	
-		Thread.sleep(5000);	
-		monthlyBuyNowButton.click();
-		logger.log(LogStatus.INFO, "Clicked the buy now button for the monthly membership option");		
-		verifySelectPaymentMethodDBandPaymentFormGeneral(logger);
-		logger.log(LogStatus.INFO,"Verify One month PaymentMethodDBandPaymentForm done");
+		HighLighter.elementHighLight(driver, monthlyBuyNowButton);	
+		logger.log(LogStatus.INFO, "Clicked the buy now button for the monthly membership option");						
+		String monthlyBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "monthlyBuyNowButtonScreenshot"));
+		logger.log(LogStatus.INFO, monthlyBuyNowButtonScreenshot);		
+		verifySelectPaymentMethodDBandPaymentFormGeneral(monthlyBuyNowButton,oneMonthExpectedPrice,"monthly",logger);
+		logger.log(LogStatus.INFO,"<b>Verify monthly PaymentMethodDBandPaymentForm done</b>");
 	}
 	
 	public void verifyThreeMonthsSelectPaymentMethodDBandPaymentForm(ExtentTest logger) throws Throwable
 	{
-		System.out.println("<b><font size='6'>Verify three months PaymentMethodDBandPaymentForm</font></b>");
-		Thread.sleep(5000);
+		logger.log(LogStatus.INFO,"<b><font size='5'>Verify three months PaymentMethodDBandPaymentForm</font></b>");
 		threeMonthsBuyNowButton.isDisplayed();
-		HighLighter.elementHighLight(driver, threeMonthsBuyNowButton);
-		Thread.sleep(5000);					
-		String threeMonthsBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, threeMonthsBuyNowButtonScreenshot);		
-		Thread.sleep(5000);	
-		threeMonthsBuyNowButton.click();		
-		logger.log(LogStatus.INFO, "Clicked the buy now button for the three months membership option");
-		verifySelectPaymentMethodDBandPaymentFormGeneral(logger);
-		System.out.println("Verify three months PaymentMethodDBandPaymentForm done ");
+		HighLighter.elementHighLight(driver, threeMonthsBuyNowButton);	
+		logger.log(LogStatus.INFO, "Clicked the buy now button for the 3 months membership option");						
+		String threeMonthsBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "threeMonthsBuyNowButtonScreenshot"));
+		logger.log(LogStatus.INFO,threeMonthsBuyNowButtonScreenshot);		
+		verifySelectPaymentMethodDBandPaymentFormGeneral(threeMonthsBuyNowButton,threeMonthsExpectedPrice,"3 Months",logger);
+		logger.log(LogStatus.INFO,"<b>Verify three months PaymentMethodDBandPaymentForm done</b>");
 	}
 	
 	public void verifySixMonthsSelectPaymentMethodDBandPaymentForm(ExtentTest logger) throws Throwable
 	{
-		System.out.println("<b><font size='6'>Verify six months PaymentMethodDBandPaymentForm</font></b>");
-		Thread.sleep(5000);
+		logger.log(LogStatus.INFO,"<b><font size='5'>Verify six months PaymentMethodDBandPaymentForm</font></b>");	
 		sixMonthsBuyNowButton.isDisplayed();
-		HighLighter.elementHighLight(driver, threeMonthsBuyNowButton);
-		Thread.sleep(5000);					
-		String sixMonthsBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, sixMonthsBuyNowButtonScreenshot);		
-		Thread.sleep(5000);	
-		sixMonthsBuyNowButton.click();
-		logger.log(LogStatus.INFO, "Clicked the buy now button for the six months membership option");
-		verifySelectPaymentMethodDBandPaymentFormGeneral(logger);
-		System.out.println("Verify six months PaymentMethodDBandPaymentForm ");
+		HighLighter.elementHighLight(driver, sixMonthsBuyNowButton);	
+		logger.log(LogStatus.INFO, "Clicked the buy now button for the 6 months membership option");						
+		String sixMonthsBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "sixMonthsBuyNowButtonScreenshot"));
+		logger.log(LogStatus.INFO,sixMonthsBuyNowButtonScreenshot);		
+		verifySelectPaymentMethodDBandPaymentFormGeneral(sixMonthsBuyNowButton,sixMonthsExpectedPrice,"6 Months",logger);
+		logger.log(LogStatus.INFO,"<b>Verify six months PaymentMethodDBandPaymentForm</b>");
 	}
 	
 	public void verifyTwelveMonthsSelectPaymentMethodDBandPaymentForm(ExtentTest logger) throws Throwable
 	{
-		System.out.println("<b><font size='6'>Verify twelve months PaymentMethodDBandPaymentForm</font></b>");
-		Thread.sleep(5000);
+		logger.log(LogStatus.INFO,"<b><font size='5'>Verify twelve months PaymentMethodDBandPaymentForm</font><b>");
 		twelveMonthsBuyNowButton.isDisplayed();
-		HighLighter.elementHighLight(driver, twelveMonthsBuyNowButton);
-		Thread.sleep(5000);					
-		String twelveMonthsBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "Application"));
-		logger.log(LogStatus.INFO, twelveMonthsBuyNowButtonScreenshot);		
-		Thread.sleep(5000);	
-		twelveMonthsBuyNowButton.click();
-		logger.log(LogStatus.INFO, "Clicked the buy now button for the twelve months membership option");
-		verifySelectPaymentMethodDBandPaymentFormGeneral(logger);
-		System.out.println("Verify twelve Months PaymentMethodDBandPaymentForm ");
+		HighLighter.elementHighLight(driver, twelveMonthsBuyNowButton);	
+		logger.log(LogStatus.INFO, "Clicked the buy now button for the 12 months membership option");						
+		String twelveMonthsBuyNowButtonScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "twelveMonthsBuyNowButtonScreenshot"));
+		logger.log(LogStatus.INFO,twelveMonthsBuyNowButtonScreenshot);		
+		verifySelectPaymentMethodDBandPaymentFormGeneral(twelveMonthsBuyNowButton,twelveMonthsExpectedPrice,"12 Months",logger);
+		logger.log(LogStatus.INFO,"<b>Verify twelve Months PaymentMethodDBandPaymentForm</b>");
 	}
 	
 	public void verifySelectPaymentMethodDBandPaymentForm(ExtentTest logger) throws Throwable
@@ -597,6 +751,5 @@ public class MembershipPage
 		verifyThreeMonthsSelectPaymentMethodDBandPaymentForm(logger);
 		verifySixMonthsSelectPaymentMethodDBandPaymentForm(logger);
 		verifyTwelveMonthsSelectPaymentMethodDBandPaymentForm(logger);
-	}
-	
+	}	
 }

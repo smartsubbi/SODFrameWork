@@ -32,17 +32,14 @@ public class AfterLoggedInPage
 	@FindBy(xpath="//p/a[@class='launch-game'][@href='#']")
 	WebElement playGameAfterLoggedIn;
 	
-	public void afterLoggedInSuccessfully() throws Throwable
+	public void afterLoggedInSuccessfully()
 	{
 		logoutAfterLoggedIn.isDisplayed();
-		HighLighter.elementHighLight(driver, logoutAfterLoggedIn);
 		changePasswordAfterLoggedIn.isDisplayed();
-		HighLighter.elementHighLight(driver, changePasswordAfterLoggedIn);
 		playGameAfterLoggedIn.isDisplayed();
-		HighLighter.elementHighLight(driver, playGameAfterLoggedIn);
 	}
 	
-	public void clickPlayNowButton() throws Throwable
+	public void clickPlayNowButton()
 	{
 		HighLighter.elementHighLight(driver, playGameAfterLoggedIn);
 		playGameAfterLoggedIn.click();

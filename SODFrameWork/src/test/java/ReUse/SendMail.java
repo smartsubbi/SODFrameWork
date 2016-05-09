@@ -9,7 +9,11 @@ public class SendMail
 	@Test
 	public static void sendMail(WebDriver driver,String subject, String mailContent, String age, String userName, String password, String emailAddress, String authorisedOrNot) throws Exception
 	{		
-		String emailIdToSend = System.getProperty("emailid");		
+		String emailIdToSend = System.getProperty("emailid");
+		if(emailIdToSend==null)
+		{
+			emailIdToSend="smartsubbi@gmail.com";
+		}
 		driver.get("https://mail.google.com/");		
 		Thread.sleep(5000);		
 		driver.findElement(By.id("Email")).sendKeys("seleniumsubbu");		
@@ -42,7 +46,11 @@ public class SendMail
 	
 	public static void sendMailOnlyContent(WebDriver driver, String subject, String content) throws Exception
 	{	
-		String emailIdToSend = System.getProperty("emailid");		
+		String emailIdToSend = System.getProperty("emailid");	
+		if(emailIdToSend==null)
+		{
+			emailIdToSend="smartsubbi@gmail.com";
+		}
 		driver.get("https://mail.google.com/");		
 		Thread.sleep(5000);		
 		driver.findElement(By.id("Email")).sendKeys("seleniumsubbu");		

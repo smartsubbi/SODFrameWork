@@ -2,22 +2,26 @@ package UnitTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Factory.ConfigDataProviderFactory;
+import Factory.EnvironmentFactory;
+import Pages.CommonHeader;
+import Pages.MembershipPage;
 import Utility.CaptureScreenshot;
+
 public class TestScroll 
 {
 
@@ -28,6 +32,8 @@ public class TestScroll
 	static String emailReportPath = userDirectory+"/ExtentReports/SchoolOfDragonsLive_" +dateFormat.format(date) + ".html";
 	static String path = userDirectory.replace("\\","/");
 	static String reportPath = "\\\\172.20.11.105\\d\\JenkinsWorkspace\\LiveLoginTestCases\\ExtentReports\\SchoolOfDragonsLive_" +dateFormat.format(date) + ".html";	
+	WebDriver driver;
+	
 	
 //	@Test
 //	public static void getIp() throws Throwable
@@ -89,8 +95,8 @@ public class TestScroll
 		WebDriver driver;
 		System.setProperty("webdriver.chrome.driver", ConfigDataProviderFactory.getConfig().getChromePath());
 		driver = new ChromeDriver();
-		Runtime.getRuntime().exec("C:\\Users\\subramanyakb\\Desktop\\ChromeAuthetication.exe");
-		driver.get("http://staging.schoolofdragons.com/");
+		//Runtime.getRuntime().exec("C:\\Users\\subramanyakb\\Desktop\\ChromeAuthetication.exe");
+		driver.get("http://qa.schoolofdragons.com/");
 		
 		System.out.println("Website opened");
 		
@@ -113,30 +119,89 @@ public class TestScroll
 		
 	}
 	
-	@Test
-	public void naukri() throws Throwable
-	{
-		WebDriver driver;
-		System.setProperty("webdriver.chrome.driver", ConfigDataProviderFactory.getConfig().getChromePath());
-		driver = new ChromeDriver();
+	
+	public void verifyMembershipPage() throws Throwable
+	{		
+		MembershipPage membershipPage = PageFactory.initElements(driver, MembershipPage.class);
+		CommonHeader header = PageFactory.initElements(driver, CommonHeader.class);
+		driver.get("http://www.schoolofdragons.com");
 		driver.manage().window().maximize();
-		driver.get("http://dev.schoolofdragons.com/");
-		Thread.sleep(3000);
-		try {
-			Runtime.getRuntime().exec("C:/Users/subramanyakb/Desktop/ChromeAuthetication.exe");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
-		Thread.sleep(15000);
-		System.out.println("Page Load Done");
-		CaptureScreenshot.takeScreenshot(driver, "Application");
-		driver.findElement(By.xpath("//div[@id='ctl00_logindiv']/a[@title='Log in']"));
-		System.out.println("Element Verification Done");
-		driver.close();
-		driver.quit();	
-		
+		header.clickHeaderLoginLink();			
+		Thread.sleep(10000);
+		driver.findElement(By.id("ctl00_mcp_tbUserName")).sendKeys("subbuplayer");
+		Thread.sleep(5000);
+		driver.findElement(By.id("ctl00_mcp_tbPassword")).sendKeys("123456");
+		Thread.sleep(5000);
+		driver.findElement(By.id("ctl00_mcp_btnLogin")).click();			
+		Thread.sleep(5000);		
+		System.out.println("Clicking membership tab");
+		header.clickMembershipTab();
+		System.out.println("Clicking membership tab done");
+		Thread.sleep(10000);				
+		//membershipPage.verifyAllMembersipOptionsAndFeatures();		
+		//membershipPage.verifySelectPaymentMethodDBandPaymentForm();				
 	}
 	
+	@Test
+	public void UrlParser() throws Throwable
+	{
+		String environment = System.getProperty("environment");
+		String url = EnvironmentFactory.setURL("Production", driver);
+//		System.setProperty("webdriver.chrome.driver", ConfigDataProviderFactory.getConfig().getChromePath());
+//		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("user-data-dir=C:\\Users\\subbu\\AppData\\Local\\Google\\Chrome\\User Data");	
+//		capabilities.setCapability("chrome.binary", ConfigDataProviderFactory.getConfig().getChromePath());
+//        capabilities.setCapability(ChromeOptions.CAPABILITY, options);		
+//		WebDriver driver = new ChromeDriver(capabilities);		
+		String s = new String("–".getBytes("UTF-8"), "UTF-8");;
+        System.out.println(s);
+//        InputStream is = new ByteArrayInputStream(inputText.getBytes("UTF-8"));
+//		String title = "Login – How to Train Your Dragon Game – School of Dragons";
+//		String value = new String(title,"UTF-8");
+//		System.out.println();
+//		System.out.println(url);		
+//        driver = BrowserFactory.getBrowser("chrome");
+//        driver.get(url);
+//        Thread.sleep(5000);
+//        CaptureScreenshot.takeScreenshot(driver, "Application");
+//        BrowserCredentialLogger.credentialSetter("Production", "HomePage");   
+//        Thread.sleep(30000);
+//        waitForPageLoaded();
+//        CaptureScreenshot.takeScreenshot(driver, "Application");
+//        driver.findElement(By.xpath("//div[@id='ctl00_logindiv']/a[@title='Log in']")).click();
+//        Thread.sleep(5000);
+//        BrowserCredentialLogger.credentialSetter("Qa", "LoginPage");
+//        Thread.sleep(5000);
+//        driver.findElement(By.xpath(".//*[@id='ctl00_mcp_tbUserName']"));
+//		driver.close();
+//		driver.quit();		
+	}
 	
-
+	  public void waitForPageLoaded() 
+	  {
+	        ExpectedCondition<Boolean> expectation = new
+	                ExpectedCondition<Boolean>() 
+	                {
+	                    public Boolean apply(WebDriver driver) 
+	                    {
+	                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+	                    }
+	                };
+	        try 
+	        {
+	            Thread.sleep(1000);
+	            WebDriverWait wait = new WebDriverWait(driver, 30);
+	            wait.until(expectation);
+	            System.out.println("Page Loaded");
+	        } catch (Throwable error) {
+	            Assert.fail("Timeout waiting for Page Load Request to complete.");
+	        }
+	    }
 }
+
+//try {
+//	Runtime.getRuntime().exec("C:\\Users\\subbu\\Desktop\\Logger.exe");
+//} catch (Exception e) {
+//	e.printStackTrace();
+//}	

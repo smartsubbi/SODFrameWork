@@ -20,7 +20,7 @@ public class CaptureScreenshot
 		InetAddress address = InetAddress.getLocalHost();
 		String hostIP = address.getHostAddress();		
 		String splitDir[] = userDirectory.split(":");		
-		String destination = "\\\\"+hostIP+splitDir[1]+"\\Screenshots\\"+screenshotname+System.currentTimeMillis()+".jpg";
+		String destination = "\\\\"+hostIP+splitDir[1]+"\\Screenshots\\"+screenshotname+System.currentTimeMillis()+".png";
 		try 
 		{
 			FileUtils.copyFile(src, new File(destination));

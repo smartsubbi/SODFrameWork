@@ -33,19 +33,19 @@ public class LoginPage
 		Assert.assertEquals(loginPageTitle, "Login – How to Train Your Dragon Game – School of Dragons");
 	}
 	
-	public void userNameType(String userName) throws Throwable
+	public void userNameType(String userName)
 	{
 		HighLighter.elementHighLight(driver, loginPageUserNameInputField);
 		loginPageUserNameInputField.sendKeys(userName);
 	}
 	
-	public void passwordType(String password) throws Throwable
+	public void passwordType(String password)
 	{
 		HighLighter.elementHighLight(driver, loginPagePasswordInputField);
 		loginPagePasswordInputField.sendKeys(password);
 	}
 	
-	public void playNowButtonClick() throws Throwable
+	public void playNowButtonClick()
 	{		
 		HighLighter.elementHighLight(driver, loginPagePlayNowButton);
 		loginPagePlayNowButton.click();	

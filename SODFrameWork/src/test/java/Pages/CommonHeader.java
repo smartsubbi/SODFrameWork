@@ -30,27 +30,25 @@ public class CommonHeader
 	@FindBy(xpath=".//*[@id='nav-membership']/a[.='Membership'][@href='/Membership/Membership.aspx']")
 	WebElement membershipTabHomePage;
 	
-	public void clickMembershipTab() throws Throwable
+	public void clickMembershipTab()
 	{
 		HighLighter.elementHighLight(driver, membershipTabHomePage);
 		membershipTabHomePage.click();
 	}
 	
-	public void clickHeaderLoginLink() throws Throwable
+	public void clickHeaderLoginLink()
 	{
 		HighLighter.elementHighLight(driver, headerLogInLink);
 		headerLogInLink.click();
 	}
 	
-	public void clickHeaderLogOutLink() throws Throwable
+	public void clickHeaderLogOutLink()
 	{
-		HighLighter.elementHighLight(driver, headerLogOutLink);
 		headerLogOutLink.click();
 	}
 	
-	public void clickHeaderCreateAnAccountLink() throws Throwable
+	public void clickHeaderCreateAnAccountLink()
 	{
-		HighLighter.elementHighLight(driver, headerCreateAnAccountLink);
 		headerCreateAnAccountLink.click();
 	}
 	
