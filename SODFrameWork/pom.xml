@@ -25,14 +25,7 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.9.8</version>
-		</dependency>
-		<dependency>
-			<groupId>MyFrameWork</groupId>
-			<artifactId>MyFrameWork</artifactId>
-			<scope>system</scope>
-			<version>0.0.1</version>
-			<systemPath>D:/MyGitProjects/SODFrameWork/SODFrameWork/libs/MyFrameWork/MyFrameWork-Jar/0.0.1/MyFrameWork.jar</systemPath>		
-		</dependency>
+		</dependency>	
 		<dependency>
 			<groupId>com.relevantcodes</groupId>
 			<artifactId>extentreports</artifactId>
@@ -45,11 +38,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.5.1</version>
 				<configuration>
-					<compilerVersion>1.8</compilerVersion>
-					<source>1.6</source>
-					<target>1.6</target>
+					<compilerVersion>2.0</compilerVersion>
+					<source>2.0</source>
+					<target>2.0</target>
 				</configuration>
 			</plugin>
 			<plugin>

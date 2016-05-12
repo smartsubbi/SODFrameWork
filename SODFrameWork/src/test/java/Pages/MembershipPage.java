@@ -16,15 +16,15 @@ public class MembershipPage
 {
 	
     WebDriver driver;
-    String oneMonthExpectedPrice = "$9.99";    
+    String oneMonthExpectedPrice = "$7.99";    
     String oneMonthExpectedOldPrice = "$9.99";
-    String threeMonthsExpectedPrice = "$24.99";
+    String threeMonthsExpectedPrice = "$17.99";
     String threeMonthsExpectedOldPrice = "$24.99";
     String threeMonthsExpectedSavings = "Save $4.98!"; 
-    String sixMonthsExpectedPrice = "$47.99";
+    String sixMonthsExpectedPrice = "$35.99";
     String sixMonthsExpectedOldPrice = "$47.99";
     String sixMonthsExpectedSavings = "Save $11.94!"; 
-    String twelveMonthsExpectedPrice = "$84.99";
+    String twelveMonthsExpectedPrice = "$64.99";
     String twelveMonthsExpectedOldPrice = "$84.99";
     String twelveMonthsExpectedSavings = "Save $34.92!"; 
     ExtentTest logger;   
@@ -45,7 +45,7 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-option'][.='Monthly']")
 	WebElement monthlyText;
 	
-	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-price']")
+	@FindBy(xpath="//div[@class='SFDMembershipOption option-one-month'][@onclick='membership.selectOpt(1);']/div[@class='membership-price']/span/span[1]")
 	WebElement monthlyPrice;
 	
 	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[1]/div[2]/span/span[2]/span")
@@ -71,7 +71,7 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']/div[@class='membership-option'][.='3 Months']")
 	WebElement threeMonthsText;
 	
-	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']/div[@class='membership-price']")
+	@FindBy(xpath="//div[@class='SFDMembershipOption option-three-months'][@onclick='membership.selectOpt(2);']/div[@class='membership-price']/span/span[1]")
 	WebElement threeMonthsPrice;
 	
 	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[2]/div[3]/span/span[2]/span")
@@ -97,7 +97,7 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-six-months '][@onclick='membership.selectOpt(3);']/div[@class='membership-option'][.='6 Months']")
 	WebElement sixMonthsText;
 	
-	@FindBy(xpath="//div[@class='SFDMembershipOption option-six-months '][@onclick='membership.selectOpt(3);']/div[@class='membership-price']")
+	@FindBy(xpath="//div[@class='SFDMembershipOption option-six-months '][@onclick='membership.selectOpt(3);']/div[@class='membership-price']/span/span[1]")
 	WebElement sixMonthsPrice;
 	
 	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[3]/div[2]/span/span[2]/span")
@@ -126,7 +126,7 @@ public class MembershipPage
 	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']/div[@class='membership-option'][.='12 Months']")
 	WebElement twelveMonthsText;
 	
-	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']/div[@class='membership-price']")
+	@FindBy(xpath="//div[@class='SFDMembershipOption option-annual'][@onclick='membership.selectOpt(4);']/div[@class='membership-price']/span/span[1]")
 	WebElement twelveMonthsPrice;
 	
 	@FindBy(xpath="//*[@id='ctl00_mcp_memberShipDiv']/div[2]/div[4]/div[3]/span/span[2]/span")
@@ -225,7 +225,7 @@ public class MembershipPage
 	WebElement selectAPaymentMethodDB;
 	
 	@FindBy(xpath="//div[@id='dvPayPlus'][@class='payWallInGameOuter']/a[@id='close-btn'][@class='close'][@onclick='closecurrentPurchaseOverlay()']")
-	public WebElement selectAPaymentMethodDBCloseButton;
+	public WebElement selectAPaymentMethodDBCloseButton;	
 	
 	@FindBy(xpath="//div[@id='dvPayPlus'][@class='payWallInGameOuter']/div[@id='dvPayPlusInner'][@class='payWallInGameInner']/div/h3[.='Select a payment method:']")
 	WebElement selectAPaymentMethodText;
@@ -344,11 +344,11 @@ public class MembershipPage
 		String oneMonthActualPrice = monthlyPrice.getText();
 		System.out.println(oneMonthActualPrice);	
 		Assert.assertEquals(oneMonthActualPrice,oneMonthExpectedPrice);
-//		Assert.assertTrue(monthlyOldPrice!=null);
-//		Assert.assertTrue(monthlyOldPrice.isDisplayed());
-//		String oneMonthActualOldPrice = monthlyOldPrice.getText();
-//		System.out.println(oneMonthActualOldPrice);			
-//		Assert.assertEquals(oneMonthActualOldPrice,oneMonthExpectedOldPrice);
+		Assert.assertTrue(monthlyOldPrice!=null);
+		Assert.assertTrue(monthlyOldPrice.isDisplayed());
+		String oneMonthActualOldPrice = monthlyOldPrice.getText();
+		System.out.println(oneMonthActualOldPrice);			
+		Assert.assertEquals(oneMonthActualOldPrice,oneMonthExpectedOldPrice);
 		Assert.assertTrue(monthlyGems!=null);
 		Assert.assertTrue(monthlyGems.isDisplayed());
 		Assert.assertTrue(monthlyValue!=null);
@@ -370,11 +370,11 @@ public class MembershipPage
 		String threeMonthsActualPrice = threeMonthsPrice.getText();
 		System.out.println(threeMonthsActualPrice);		
 		Assert.assertEquals(threeMonthsActualPrice, threeMonthsExpectedPrice);	
-//		Assert.assertTrue(threeeMonthsOldPrice!=null);
-//		Assert.assertTrue(threeeMonthsOldPrice.isDisplayed());
-//		String threeMonthsActualOldPrice = threeeMonthsOldPrice.getText();
-//		System.out.println(threeMonthsActualOldPrice);		
-//		Assert.assertEquals(threeMonthsActualOldPrice, threeMonthsExpectedOldPrice);		
+		Assert.assertTrue(threeeMonthsOldPrice!=null);
+		Assert.assertTrue(threeeMonthsOldPrice.isDisplayed());
+		String threeMonthsActualOldPrice = threeeMonthsOldPrice.getText();
+		System.out.println(threeMonthsActualOldPrice);		
+		Assert.assertEquals(threeMonthsActualOldPrice, threeMonthsExpectedOldPrice);		
 		Assert.assertTrue(threeMonthsSavings!=null);
 		Assert.assertTrue(threeMonthsSavings.isDisplayed());
 		String threeMonthsActualSavings = threeMonthsSavings.getText();
@@ -399,11 +399,11 @@ public class MembershipPage
 		String sixMonthsActualPrice = sixMonthsPrice.getText();
 		System.out.println(sixMonthsActualPrice);		
 		Assert.assertEquals(sixMonthsActualPrice, sixMonthsExpectedPrice);
-//		Assert.assertTrue(sixMonthsOldPrice!=null);
-//		Assert.assertTrue(sixMonthsOldPrice.isDisplayed());
-//		String sixMonthsActualOldPrice = sixMonthsOldPrice.getText();
-//		System.out.println(sixMonthsActualOldPrice);		
-//		Assert.assertEquals(sixMonthsActualOldPrice, sixMonthsExpectedOldPrice);
+		Assert.assertTrue(sixMonthsOldPrice!=null);
+		Assert.assertTrue(sixMonthsOldPrice.isDisplayed());
+		String sixMonthsActualOldPrice = sixMonthsOldPrice.getText();
+		System.out.println(sixMonthsActualOldPrice);		
+		Assert.assertEquals(sixMonthsActualOldPrice, sixMonthsExpectedOldPrice);
 		Assert.assertTrue(sixMonthsSavings!=null);
 		Assert.assertTrue(sixMonthsSavings.isDisplayed());
 		String sixMonthActualSavings = sixMonthsSavings.getText();
@@ -430,11 +430,11 @@ public class MembershipPage
 		String twelveMonthsActualPrice = twelveMonthsPrice.getText();
 		System.out.println(twelveMonthsActualPrice);		
 		Assert.assertEquals(twelveMonthsActualPrice, twelveMonthsExpectedPrice);
-//		Assert.assertTrue(twelveMonthsOldPrice!=null);
-//		Assert.assertTrue(twelveMonthsOldPrice.isDisplayed());
-//		String twelveMonthsActualOldPrice = twelveMonthsOldPrice.getText();
-//		System.out.println(twelveMonthsActualOldPrice);		
-//		Assert.assertEquals(twelveMonthsActualOldPrice, twelveMonthsExpectedOldPrice);		
+		Assert.assertTrue(twelveMonthsOldPrice!=null);
+		Assert.assertTrue(twelveMonthsOldPrice.isDisplayed());
+		String twelveMonthsActualOldPrice = twelveMonthsOldPrice.getText();
+		System.out.println(twelveMonthsActualOldPrice);		
+		Assert.assertEquals(twelveMonthsActualOldPrice, twelveMonthsExpectedOldPrice);		
 		Assert.assertTrue(twelveMonthsSavings!=null);
 		Assert.assertTrue(twelveMonthsSavings.isDisplayed());
 		String TwelveMonthsActualSavings = twelveMonthsSavings.getText();
@@ -627,7 +627,7 @@ public class MembershipPage
 		
 		String selectPaymentMethodPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodPayPalScreenshot"));
 		logger.log(LogStatus.INFO, selectPaymentMethodPayPalScreenshot);
-		Thread.sleep(5000);	
+		Thread.sleep(10000);	
 		String currentURL = driver.getCurrentUrl();		
 		Assert.assertTrue(currentURL.contains("https://www.paypal.com"));	
 		logger.log(LogStatus.INFO, "Verifying PayPal page URL for : "+membershipType);
