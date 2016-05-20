@@ -21,7 +21,7 @@ public class ExcelDataProvider
 	public ExcelDataProvider() 
 	{
 
-		File src = new File("D:/Usernames Excels/Usernames.xlsx");
+		File src = new File("C:/Usernames Excels/Usernames.xlsx");
 
 		try {
 			FileInputStream fis = new FileInputStream(src);
@@ -129,7 +129,7 @@ public class ExcelDataProvider
 
 		try 
 		{
-			FileOutputStream out = new FileOutputStream("D:/Usernames Excels/Usernames.xlsx");
+			FileOutputStream out = new FileOutputStream("C:/Usernames Excels/Usernames.xlsx");
 			wb.write(out);
 			out.close();
 			System.out.println("Usernames.xlsx written successfully on disk.");
